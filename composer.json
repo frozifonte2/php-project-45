@@ -1,0 +1,16 @@
+{
+    "name": "hexlet/code",
+    "description": "the project brain games",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "AlexDeveloper",
+            "role": "Developer"
+        }
+    ],
+    "require": {}
+}
