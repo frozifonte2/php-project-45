@@ -1,5 +1,6 @@
 #!C:\OSPanel\modules\php\PHP_8.1\php.exe
 <?php
+
 use function Php\Project\Cli\getUserName;
 
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
