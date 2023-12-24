@@ -1,0 +1,4 @@
+#!C:\OSPanel\modules\php\PHP_8.1\php.exe
+<?php
+	echo "Welcome to the Brain Games!";
+?>
