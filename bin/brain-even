@@ -1,0 +1,58 @@
+#!C:\OSPanel\modules\php\PHP_8.1\php.exe
+<?php
+use function cli\line;
+use function cli\choose;
+use function cli\input;
+use function cli\prompt;
+use function cli\out;
+use function cli\out_padded;
+
+$autoloadPath1 = __DIR__ . '/../../../autoload.php';
+$autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
+if (file_exists($autoloadPath1)) {
+	require_once $autoloadPath1;
+} else {
+	require_once $autoloadPath2;
+}
+function getUserName() {
+	line('Welcome to the Brain Games!');
+	$name = prompt('May I have you name?');
+	line('Hello, %s!', $name);
+	evenGame($name);
+}
+function evenGame($name = null) 
+{
+	$choose = choose("Are you ready to start the game?", 'yn', 'n');
+	if ($choose === 'y') {
+		line("Answer 'yes' if the number is even, othewise anser 'no'");
+		$startGame = choose("Did you understood the rule?", 'yn', 'n');
+		$counter = 1;
+		do {
+			if ($startGame === 'y') {
+				$number = rand(0, 30);
+				line("Alright. Is this integer even or not?: {$number}");
+				$userAnswer = input();
+				line("Your answer is: {$userAnswer}");
+
+				if ($number % 2 === 0 && $userAnswer === 'yes' || $number % 2 !== 0 && $userAnswer === 'no') {
+					line('Correct!');
+					$counter++;
+				} else {
+					$checkAnswer = $userAnswer === 'yes' ? 'no' : 'yes';
+					line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$checkAnswer}'. Let's try again, {$name}!");
+					$counter--;
+				}
+				
+			}
+			else {
+				evenGame($name);
+			}
+		} 
+		while($counter <= 3);
+		out("Congratulations, {$name}!");
+		
+	} else {
+		out_padded("Alright. Bye");
+	}
+}
+getUserName();
